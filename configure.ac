@@ -393,14 +393,15 @@ fi
 
 if test x"$use_jni" != x"no"; then
   AX_JNI_INCLUDE_DIR
+  # JNI_INCLUDE_DIRS="/Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home/include /Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home/include/darwin"
   have_jni_dependencies=yes
   if test x"$enable_module_ecdh" = x"no"; then
     have_jni_dependencies=no
   fi
-  if test "x$JNI_INCLUDE_DIRS" = "x"; then
+  if test x"$JNI_INCLUDE_DIRS" = x""; then
     have_jni_dependencies=no
   fi
-  if test "x$have_jni_dependencies" = "xno"; then
+  if test x"$have_jni_dependencies" = x"no"; then
     if test x"$use_jni" = x"yes"; then
       AC_MSG_ERROR([jni support explicitly requested but headers/dependencies were not found. Enable ECDH and try again.])
     fi
